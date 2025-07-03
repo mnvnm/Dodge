@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
         }
 
         m_isAlive = true;
-        gameObject.SetActive(true);
+        gameObject.SetActive(m_isAlive);
     }
 
     void Move()
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
     public void Dead()
     {
         m_isAlive = false;
-        gameObject.SetActive(false);
-        Debug.Log("Player Dead");
+        gameObject.SetActive(m_isAlive);
+        GameMng.Inst.EndGame();
     }
 }

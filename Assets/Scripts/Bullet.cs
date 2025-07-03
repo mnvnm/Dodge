@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
     private float m_speed = 15.0f;
     void Awake()
     {
-        
+
     }
     public void Init()
     {
@@ -25,11 +25,13 @@ public class Bullet : MonoBehaviour
 
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Wall")) Destroy(gameObject);
+        
+        if (other.gameObject.CompareTag("Player"))
         {
-            var player = collision.gameObject.GetComponent<PlayerController>();
+            var player = other.gameObject.GetComponent<PlayerController>();
             if (player != null) player.Dead();
             GameMng.Inst.EndGame();
             Destroy(gameObject);
